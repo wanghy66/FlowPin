@@ -5,9 +5,9 @@
 [![UI](https://img.shields.io/badge/UI-WPF-0a66c2?style=flat-square)](#)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
 
-FlowPin is a lightweight Windows tray app that brings browser-like middle-click auto-scroll to desktop apps (editor, terminal, file explorer, etc.).
+FlowPin is a lightweight Windows tray utility that brings browser-like middle-click auto-scroll to desktop apps.
 
-FlowPin 是一个轻量级 Windows 托盘工具，把浏览器“中键自动滚动”的体验扩展到桌面应用（编辑器、终端、资源管理器等）。
+FlowPin 是一款轻量级 Windows 托盘工具，把浏览器中键自动滚动体验扩展到更多桌面应用。
 
 **Keywords / 关键词**: middle-click-auto-scroll, windows-autoscroll, tray-utility, productivity-tool, 中键滚动, 自动滚动, Windows效率工具, 终端滚动, 资源管理器滚动
 
@@ -16,23 +16,28 @@ FlowPin 是一个轻量级 Windows 托盘工具，把浏览器“中键自动滚
 ## Highlights / 核心特性
 
 - Middle-click auto-scroll with anchor-based acceleration  
-  中键触发自动滚动，基于锚点距离加速
-- Hold middle button + move: release to stop; click mode also supported  
-  支持“按住拖动松手退出”与“点按常驻”两种模式
-- Process/Class filtering (`All Apps`, `Exclude List`, `Only List`)  
-  支持进程/窗口类名过滤（全部应用、排除名单、仅名单）
-- Smooth overlay indicator with customizable size and color  
-  指示器支持颜色、大小自定义
-- Chinese/English UI  
-  中英双语界面
-- Portable self-contained build available  
-  支持自包含单文件发布
+  中键自动滚动，基于锚点距离加速
+- Hold-to-scroll and click-to-toggle modes  
+  支持按住拖动松手退出与点按常驻两种模式
+- Scope modes: All Apps / Exclude List / Only List  
+  应用范围模式：全部应用 / 排除名单 / 仅名单
+- Process list + window class list filtering  
+  支持进程名单和窗口类名名单过滤
+- Customizable indicator (size/color)  
+  指示器可自定义（大小/颜色）
+- Chinese/English settings UI  
+  中英双语设置界面
 
 ---
 
+## Screenshots / 截图
+
+> Add screenshots here.  
+> 这里可放设置页和滚动指示器截图。
+
 > **AI Notice / AI 说明**  
 > This project was primarily generated and iterated with AI assistance (GPT-5.3).  
-> 本项目主要由 AI（GPT-5.3）辅助生成与迭代完成。  
+> 本项目主要由 AI（GPT-5.3）辅助生成与迭代完成。
 
 ---
 
@@ -40,12 +45,9 @@ FlowPin 是一个轻量级 Windows 托盘工具，把浏览器“中键自动滚
 
 ### Run directly / 直接运行
 
-Use the published self-contained executable:  
-使用发布后的自包含可执行文件：
-
 `publish/single-file-self-contained-v3/FlowPin.App.exe`
 
-### Build from source / 从源码构建
+### Build / 构建
 
 ```powershell
 dotnet build .\FlowPin.sln
@@ -57,37 +59,30 @@ dotnet build .\FlowPin.sln
 dotnet publish .\FlowPin.App\FlowPin.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -o .\publish\single-file-self-contained-v3
 ```
 
+### Publish (framework-dependent) / 发布（框架依赖）
+
+```powershell
+dotnet publish .\FlowPin.App\FlowPin.App.csproj -c Release -r win-x64 --self-contained false -o .\publish\framework-dependent-win-x64
+```
+
 ---
 
 ## Usage / 使用方法
 
-1. Launch app (runs in tray).  
+1. Launch the app (runs in tray).  
    启动程序（常驻托盘）。
-2. Middle-click in target window to start auto-scroll.  
-   在目标窗口按中键开始自动滚动。
-3. Move mouse farther from anchor for faster scrolling.  
+2. Middle-click in a target window to start scrolling.  
+   在目标窗口按中键开始滚动。
+3. Move farther from anchor for faster scroll.  
    鼠标离锚点越远，滚动越快。
-4. Press middle-click again or `Esc` to stop.  
-   再按中键或 `Esc` 退出。
-
-Settings are opened from tray menu (or left-click tray icon).  
-设置可通过托盘菜单（或左键托盘图标）打开。
+4. Middle-click again or press `Esc` to stop.  
+   再按中键或按 `Esc` 退出。
+5. Open settings from tray and click **Save** to apply changes.  
+   从托盘打开设置，修改后点击“保存”生效。
 
 ---
 
-## Configuration / 配置说明
-
-- `Sensitivity` / 灵敏度
-- `Dead Zone` / 死区
-- `Range` / 距离尺度（影响加速曲线）
-- `Gamma` / 曲线形状
-- `Middle Click Debounce` / 中键防抖
-- Filter mode and lists / 过滤模式与名单
-- Indicator color/size / 指示器颜色与大小
-- Language / 语言
-- Restore defaults / 恢复默认设置
-
-Config and log files:
+## Config / 配置文件
 
 - `%AppData%\FlowPin\settings.json`
 - `%AppData%\FlowPin\app.log`
@@ -108,30 +103,14 @@ FlowPin.App/
 
 ---
 
-## Roadmap / 路线图
-
-- [ ] More robust compatibility presets for major apps  
-      更多主流应用兼容预设
-- [ ] Optional speed profile presets  
-      可选速度档位预设
-- [ ] Better diagnostics panel in UI  
-      在 UI 中加入诊断面板
-
----
-
 ## Contributing / 贡献
 
 Issues and pull requests are welcome.  
 欢迎提交 Issue 和 PR。
 
-Please include:
-
-- Repro steps / 复现步骤
-- Environment / 环境信息（Windows version, app version）
-- Relevant logs / 相关日志（`%AppData%\FlowPin\app.log`）
-
 ---
 
 ## License / 许可证
 
-MIT.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.  
+本项目采用 MIT 许可证，详见 [LICENSE](./LICENSE)。
