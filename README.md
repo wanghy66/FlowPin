@@ -9,6 +9,8 @@ FlowPin is a lightweight Windows tray app that brings browser-like middle-click 
 
 FlowPin 是一个轻量级 Windows 托盘工具，把浏览器“中键自动滚动”的体验扩展到桌面应用（编辑器、终端、资源管理器等）。
 
+**Keywords / 关键词**: middle-click-auto-scroll, windows-autoscroll, tray-utility, productivity-tool, zhongjian-gundong, zidong-gundong, windows-xiaolv-gongju, zhongduan-gundong, ziyuan-guanliqi-gundong
+
 ---
 
 ## Highlights / 核心特性
