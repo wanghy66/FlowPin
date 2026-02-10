@@ -1,0 +1,434 @@
+<Window x:Class="FlowPin.App.UI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FlowPin 设置"
+        Width="520"
+        Height="760"
+        MinWidth="480"
+        MinHeight="620"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize"
+        Background="#F4F7FC"
+        FontFamily="Microsoft YaHei UI, Segoe UI">
+    <Window.Resources>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#FCFDFF" />
+            <Setter Property="BorderBrush" Value="#D7E3F5" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#2D3E59" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="0,8,0,0" />
+        </Style>
+        <Style x:Key="HintStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11.5" />
+            <Setter Property="Foreground" Value="#6781A8" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0,4,0,0" />
+        </Style>
+        <Style x:Key="InputStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="8,4,8,4" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#C5D7F0" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="10,4,10,4" />
+            <Setter Property="Background" Value="#EAF1FF" />
+            <Setter Property="Foreground" Value="#204E9E" />
+            <Setter Property="BorderBrush" Value="#EAF1FF" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="SegmentButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="MinWidth" Value="76" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+            <Setter Property="Padding" Value="10,4,10,4" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#2B4E84" />
+            <Setter Property="BorderBrush" Value="#C5D7F0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="MinimalScrollBarStyle" TargetType="ScrollBar">
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Width="{TemplateBinding Width}" Background="Transparent">
+                            <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False" />
+                                </Track.DecreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border CornerRadius="4" Background="#33C7DDF5">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="Background" Value="#33C7DDF5" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Thumb}}" Value="True">
+                                                                    <Setter Property="Background" Value="#8A7EB9F4" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding IsDragging, RelativeSource={RelativeSource AncestorType=Thumb}}" Value="True">
+                                                                    <Setter Property="Background" Value="#A07EB9F4" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False" />
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource MinimalScrollBarStyle}" />
+            </ScrollViewer.Resources>
+            <Grid Margin="14,14,14,8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Style="{StaticResource CardStyle}" Padding="14,12,14,10">
+                    <StackPanel>
+                        <TextBlock Text="FlowPin" FontSize="20" FontWeight="Bold" Foreground="#21324A" />
+                        <TextBlock x:Name="HeaderSubtitleText" FontSize="12" Foreground="#6A7D9D" Margin="0,3,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="1" Style="{StaticResource CardStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="LabelSensitivity" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="8,0,0,8">
+                            <TextBox x:Name="SensitivityBox" Style="{StaticResource InputStyle}" />
+                            <TextBlock x:Name="HintSensitivity" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelDeadZone" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="8,0,0,8">
+                            <TextBox x:Name="DeadZoneBox" Style="{StaticResource InputStyle}" />
+                            <TextBlock x:Name="HintDeadZone" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelRange" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="8,0,0,8">
+                            <TextBox x:Name="RangeBox" Style="{StaticResource InputStyle}" />
+                            <TextBlock x:Name="HintRange" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelMaxSpeed" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="8,0,0,8">
+                            <TextBox x:Name="MaxSpeedBox" Style="{StaticResource InputStyle}" />
+                            <TextBlock x:Name="HintMaxSpeed" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelGamma" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="4" Grid.Column="1" Margin="8,0,0,8">
+                            <TextBox x:Name="GammaBox" Style="{StaticResource InputStyle}" />
+                            <TextBlock x:Name="HintGamma" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelMiddleClickDebounce" Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="5" Grid.Column="1" Margin="8,0,0,0">
+                            <DockPanel>
+                                <TextBox x:Name="MiddleClickDebounceBox" Width="96" Style="{StaticResource InputStyle}" />
+                                <TextBlock x:Name="HintMiddleClickDebounceUnit" Margin="8,8,0,0" Foreground="#4C5F7D" />
+                            </DockPanel>
+                            <TextBlock x:Name="HintMiddleClickDebounce" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="2" Style="{StaticResource CardStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="LabelFilterMode" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="8,0,0,8">
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="FilterModeDisabledButton" Style="{StaticResource SegmentButtonStyle}" Click="FilterModeDisabledButton_OnClick" />
+                                <Button x:Name="FilterModeBlacklistButton" Style="{StaticResource SegmentButtonStyle}" Click="FilterModeBlacklistButton_OnClick" />
+                                <Button x:Name="FilterModeWhitelistButton" Style="{StaticResource SegmentButtonStyle}" Click="FilterModeWhitelistButton_OnClick" Margin="0" />
+                            </StackPanel>
+                            <ComboBox x:Name="FilterModeBox" Visibility="Collapsed" Height="0" IsHitTestVisible="False">
+                                <ComboBoxItem Content="Disabled" />
+                                <ComboBoxItem Content="Blacklist" />
+                                <ComboBoxItem Content="Whitelist" />
+                            </ComboBox>
+                            <TextBlock x:Name="HintFilterMode" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelProcessList" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="8,0,0,8">
+                            <Button x:Name="AddForegroundToGeneralButton"
+                                    Width="210"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,0,0,6"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Click="AddForegroundToGeneralButton_OnClick" />
+                            <TextBox x:Name="ProcessListBox"
+                                     MinHeight="96"
+                                     AcceptsReturn="True"
+                                     VerticalScrollBarVisibility="Auto"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     TextWrapping="NoWrap"
+                                     Padding="8,6,8,6"
+                                     Background="#FFFFFF"
+                                     BorderBrush="#C5D7F0"
+                                     BorderThickness="1"
+                                     FontSize="12.5" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelWindowClassList" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="8,0,0,0">
+                            <Button x:Name="AddForegroundClassButton"
+                                    Width="210"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,0,0,6"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Click="AddForegroundClassButton_OnClick" />
+                            <TextBox x:Name="WindowClassListBox"
+                                     MinHeight="86"
+                                     AcceptsReturn="True"
+                                     VerticalScrollBarVisibility="Auto"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     TextWrapping="NoWrap"
+                                     Padding="8,6,8,6"
+                                     Background="#FFFFFF"
+                                     BorderBrush="#C5D7F0"
+                                     BorderThickness="1"
+                                     FontSize="12.5" />
+                            <TextBlock x:Name="HintWindowClassList" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="3" Style="{StaticResource CardStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="LabelContinuousPreferred" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="8,0,0,10">
+                            <Button x:Name="AddForegroundToContinuousButton"
+                                    Width="210"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,0,0,6"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Click="AddForegroundToContinuousButton_OnClick" />
+                            <TextBox x:Name="ContinuousPreferredBox"
+                                     MinHeight="78"
+                                     AcceptsReturn="True"
+                                     VerticalScrollBarVisibility="Auto"
+                                     TextWrapping="NoWrap"
+                                     Padding="8,6,8,6"
+                                     Background="#FFFFFF"
+                                     BorderBrush="#C5D7F0"
+                                     BorderThickness="1"
+                                     FontSize="12.5" />
+                            <TextBlock x:Name="HintContinuousPreferred" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelEnhancedMode" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="8,0,0,0">
+                            <Button x:Name="AddForegroundToEnhancedButton"
+                                    Width="210"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,0,0,6"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Click="AddForegroundToEnhancedButton_OnClick" />
+                            <TextBox x:Name="EnhancedModeBox"
+                                     MinHeight="78"
+                                     AcceptsReturn="True"
+                                     VerticalScrollBarVisibility="Auto"
+                                     TextWrapping="NoWrap"
+                                     Padding="8,6,8,6"
+                                     Background="#FFFFFF"
+                                     BorderBrush="#C5D7F0"
+                                     BorderThickness="1"
+                                     FontSize="12.5" />
+                            <TextBlock x:Name="HintEnhancedMode" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="4" Style="{StaticResource CardStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="LabelOverlaySize" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="8,0,0,8">
+                            <DockPanel>
+                                <TextBox x:Name="OverlaySizeBox" Width="92" Style="{StaticResource InputStyle}" TextChanged="OverlaySizeBox_OnTextChanged" />
+                                <TextBlock x:Name="HintOverlaySizeUnit" Margin="8,8,0,0" Foreground="#4C5F7D" />
+                            </DockPanel>
+                            <Border Margin="0,8,0,0" Width="88" Height="52" BorderBrush="#D6E2F5" BorderThickness="1" CornerRadius="8" Background="#F8FAFF" HorizontalAlignment="Left">
+                                <Grid>
+                                    <Ellipse x:Name="OverlaySizePreview"
+                                             Width="20"
+                                             Height="20"
+                                             Stroke="#883FA9FF"
+                                             StrokeThickness="1.5"
+                                             Fill="#24203040"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelPresetColor" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="8,0,0,8">
+                            <WrapPanel x:Name="ColorSwatchPanel" HorizontalAlignment="Left" />
+                            <TextBlock x:Name="HintPresetColor" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="LabelManualColor" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="8,0,0,0">
+                            <TextBox x:Name="OverlayColorBox" Style="{StaticResource InputStyle}" TextChanged="OverlayColorBox_OnTextChanged" />
+                            <TextBlock x:Name="HintManualColor" Style="{StaticResource HintStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="5" Style="{StaticResource CardStyle}" Margin="0,0,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="LabelLanguage" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="8,0,0,0" HorizontalAlignment="Left">
+                            <Button x:Name="LanguageChineseButton" Style="{StaticResource SegmentButtonStyle}" Click="LanguageChineseButton_OnClick" />
+                            <Button x:Name="LanguageEnglishButton" Style="{StaticResource SegmentButtonStyle}" Click="LanguageEnglishButton_OnClick" Margin="0" />
+                        </StackPanel>
+                        <Button x:Name="ResetDefaultsButton"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Width="124"
+                                Height="30"
+                                Margin="8,8,0,0"
+                                HorizontalAlignment="Left"
+                                Click="ResetDefaultsButton_OnClick"
+                                BorderThickness="0"
+                                Background="#F0F4FB"
+                                Foreground="#355A8E"
+                                FontWeight="SemiBold" />
+                        <ComboBox x:Name="LanguageBox" Visibility="Collapsed" Width="0" Height="0" IsHitTestVisible="False" SelectionChanged="LanguageBox_OnSelectionChanged">
+                            <ComboBoxItem Tag="zh-CN" Content="中文" />
+                            <ComboBoxItem Tag="en-US" Content="English" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+
+        <Border Grid.Row="1" BorderThickness="1,1,0,0" BorderBrush="#D7E2F3" Background="#F9FBFF" Padding="14,8,14,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="SaveHint"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Foreground="#3167B8"
+                           FontWeight="SemiBold" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="SaveButton"
+                            Width="104"
+                            Height="32"
+                            Margin="0,0,8,0"
+                            Click="Save_OnClick"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Background="#2F78E6"
+                            BorderBrush="#2F78E6"
+                            BorderThickness="0" />
+                    <Button x:Name="CancelButton"
+                            Width="88"
+                            Height="32"
+                            Click="Cancel_OnClick"
+                            BorderThickness="0"
+                            Background="#EAF1FF"
+                            Foreground="#244A86"
+                            FontWeight="SemiBold" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

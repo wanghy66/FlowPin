@@ -1,0 +1,20 @@
+# Build outputs
+bin/
+obj/
+publish/
+
+# IDE / tooling
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Logs / local runtime data
+*.log
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Legacy folder (old rename artifact)
+AutoScroll.App/
