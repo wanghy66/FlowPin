@@ -30,10 +30,6 @@ FlowPin 是一款轻量级 Windows 托盘工具，把浏览器中键自动滚动
 
 ---
 
-## Screenshots / 截图
-
-> Add screenshots here.  
-> 这里可放设置页和滚动指示器截图。
 
 > **AI Notice / AI 说明**  
 > This project was primarily generated and iterated with AI assistance (GPT-5.3).  
