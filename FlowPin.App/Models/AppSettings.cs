@@ -8,7 +8,7 @@ public sealed class AppSettings
     public double MaxSpeed { get; set; } = 4200.0;
     public double Gamma { get; set; } = 1.6;
     public int MiddleClickDebounceMs { get; set; } = 120;
-    public FilterMode FilterMode { get; set; } = FilterMode.Blacklist;
+    public FilterMode FilterMode { get; set; } = FilterMode.Disabled;
     public List<string> ProcessList { get; set; } = new()
     {
         "chrome",

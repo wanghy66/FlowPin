@@ -9,7 +9,7 @@ FlowPin is a lightweight Windows tray app that brings browser-like middle-click 
 
 FlowPin 是一个轻量级 Windows 托盘工具，把浏览器“中键自动滚动”的体验扩展到桌面应用（编辑器、终端、资源管理器等）。
 
-**Keywords / 关键词**: middle-click-auto-scroll, windows-autoscroll, tray-utility, productivity-tool, zhongjian-gundong, zidong-gundong, windows-xiaolv-gongju, zhongduan-gundong, ziyuan-guanliqi-gundong
+**Keywords / 关键词**: middle-click-auto-scroll, windows-autoscroll, tray-utility, productivity-tool, 中键滚动, 自动滚动, Windows效率工具, 终端滚动, 资源管理器滚动
 
 ---
 
@@ -30,10 +30,9 @@ FlowPin 是一个轻量级 Windows 托盘工具，把浏览器“中键自动滚
 
 ---
 
-## Screenshots / 截图
-
-> Add your screenshots here  
-> 这里可放设置界面和滚动指示器截图
+> **AI Notice / AI 说明**  
+> This project was primarily generated and iterated with AI assistance (GPT-5.3).  
+> 本项目主要由 AI（GPT-5.3）辅助生成与迭代完成。  
 
 ---
 
@@ -41,11 +40,10 @@ FlowPin 是一个轻量级 Windows 托盘工具，把浏览器“中键自动滚
 
 ### Run directly / 直接运行
 
-Use the published self-contained executable:
-
+Use the published self-contained executable:  
 使用发布后的自包含可执行文件：
 
-`publish/single-file-self-contained/FlowPin.App.exe`
+`publish/single-file-self-contained-v3/FlowPin.App.exe`
 
 ### Build from source / 从源码构建
 
@@ -56,7 +54,7 @@ dotnet build .\FlowPin.sln
 ### Publish (self-contained) / 发布（自包含）
 
 ```powershell
-dotnet publish .\FlowPin.App\FlowPin.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -o .\publish\single-file-self-contained
+dotnet publish .\FlowPin.App\FlowPin.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -o .\publish\single-file-self-contained-v3
 ```
 
 ---
@@ -136,5 +134,4 @@ Please include:
 
 ## License / 许可证
 
-MIT (recommended).  
-建议使用 MIT 许可证（可按需调整）。
+MIT.

@@ -47,11 +47,6 @@ public partial class App : System.Windows.Application
         _logger = new LoggerService();
         _settingsService = new SettingsService(_logger);
         _settings = _settingsService.Load();
-        if (!_settings.EnableDebugLog)
-        {
-            _settings.EnableDebugLog = true;
-            _settingsService.Save(_settings);
-        }
         _state = new AppState();
         _filterService = new ProcessFilterService(_settings);
 
